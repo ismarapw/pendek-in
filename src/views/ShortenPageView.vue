@@ -13,6 +13,7 @@ import Hero from "../components/Hero.vue"
 import Form from "../components/Form.vue"
 import Footer from "../components/Footer.vue"
 
+
 export default {
   name: 'ShortenPageView',
   components : {
@@ -21,7 +22,15 @@ export default {
 
   data (){
     return {
-      isShortenContent : true
+      isShortenContent : true,
+      result : null
+    }
+  },
+
+  methods : {
+    getResult(result){
+      // this.result = result;
+      console.log('cokkk');
     }
   }
 }

@@ -6,7 +6,7 @@
             <p>Copyright 2022 @ismar_apw</p>
         </div>
         <div class="powered">
-            <p> API Powered by cuttly</p>
+            <p> API Powered by tiny.url</p>
         </div>
     </div>
   </footer>

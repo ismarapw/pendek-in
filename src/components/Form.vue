@@ -5,11 +5,11 @@
                 <h2>Hayo letakkan tautan mu disini</h2>
                 <hr>
             </div>
-            <div v-if="isShortenContent">
-                <ShortenInput />
+            <div v-if="isShortenContent" class="form-content">
+                <ShortenForm />
             </div>
-            <div v-else>
-                <QrCodeInput />
+            <div v-else class="form-content">
+                <QrCodeForm />
             </div>
         </div>
     </div>
@@ -17,13 +17,13 @@
 
 <script>
 
-import ShortenInput from "./ShortenInput.vue"
-import QrCodeInput from "./QrCodeInput.vue"
+import ShortenForm from "./ShortenForm.vue"
+import QrCodeForm from "./QrCodeForm.vue"
 
 export default {
     props : ['isShortenContent'],
     components : {
-        ShortenInput, QrCodeInput
+        ShortenForm, QrCodeForm
     }
 
 }
@@ -74,6 +74,10 @@ export default {
         border: 2px solid #4A20F2;
         transition: .2s ease-in;
         color: #4A20F2;
+    }
+
+    .error-input {
+        border: 2px solid #ff1f2b;
     }
 
     @media only screen and (max-width: 768px) {

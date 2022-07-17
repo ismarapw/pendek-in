@@ -27,6 +27,10 @@ body {
     align-items: center;
 }
 
+.flex-align-self-center {
+    align-self: center;
+}
+
 .button {
     border-radius: 20px;
     border: none;
@@ -53,6 +57,18 @@ body {
     background: linear-gradient(90deg, #4A20F2 0%, #9B50FB 154.01%);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
+}
+
+.error-msg {
+    margin-top: 3px;
+    font-size: 14px;
+    color: #ff1f2b;
+}
+
+i {
+    position: relative;
+    top: 2px;
+    margin-right: 3px;
 }
 
 @media only screen and (max-width: 768px) {
