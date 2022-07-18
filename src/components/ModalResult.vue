@@ -10,18 +10,29 @@
         </div>
         <hr class="header-line">
       </header>
-      <section>
-        <div v-if="result.code === 0">
+
+      <section v-if="shortenResult">
+        <div v-if="shortenResult.code === 0">
           <p>Wih ada link baru nich</p>
           <div class="result flex">
-            <input class="input-result" type="text" readonly v-model = "result.data.tiny_url">
-            <button class="button button-copy" v-on:click = "copyToClipboard">Copy</button>
+            <input class="input-result" type="text" readonly v-model = "shortenResult.data.tiny_url">
+            <button class="button button-copy" v-on:click = "copyToClipboard(shortenResult.data.tiny_url)"><i class="ri-file-copy-line"></i> Copy</button>
           </div>
         </div>
-        <div v-if="result.code !== 0">
-          <p class="error-result">Waduh gagal, katanya "{{result.errors[0]}}"</p>
+        <div v-if="shortenResult.code !== 0">
+          <p class="error-result">Waduh gagal, katanya "{{shortenResult.errors[0]}}"</p>
         </div>
+      </section>
 
+      <section v-if="QrResult">
+        <p class="msg-qr">Wih ada QR Code nih, buruan scan!</p>
+        <div class="flex flex-justify-center">
+          <img v-bind:src="QrResult" alt="hasil-generate">
+        </div>
+        <div class="flex flex-justify-center" style="margin-top: 20px">
+          <a v-bind:href="QrResult" download target="_blank" class="button button-download"><i class="ri-download-fill"></i>Download</a>
+          <button class="button button-copy-secondary" style="margin-left: 20px" v-on:click = "copyToClipboard(QrResult)"><i class="ri-file-copy-line"></i>Copy</button>
+        </div>
       </section>
     </div>
   </div>
@@ -29,15 +40,19 @@
 
 <script>
 export default {
-  props : ['result','modalStatus'],
+  props : ['shortenResult','modalStatus', 'QrResult'],
+
+  mounted (){
+    console.log(this.QrResult);
+  },
 
   methods : {
     closeModal(){
       this.$emit('close')
     },
 
-    copyToClipboard(){
-      navigator.clipboard.writeText(this.result.data.tiny_url);
+    copyToClipboard(data){
+      navigator.clipboard.writeText(data);
     }
   }
 
@@ -79,6 +94,7 @@ export default {
       height: 30px;
       background-color: #ececec;
       border-radius: 100%;
+      cursor: pointer;
     }
 
     .ri-close-line {
@@ -90,10 +106,10 @@ export default {
     }
 
     .input-result {
-      width: 70%;
+      width: 65%;
     }
 
-    .button-copy {
+    .button-copy, .button-download{
       margin-left: 10px;
       background: linear-gradient(90deg, #4A20F2 0%, #9B50FB 154.01%);
       color: white;
@@ -107,5 +123,13 @@ export default {
       padding-bottom: 20px;
     }
 
+    .msg-qr {
+      text-align: center;
+    }
+    
+    .button-copy-secondary{
+      background-color: #dfdfdf;
+      color: #1A1A1A;
+    }
 
 </style>

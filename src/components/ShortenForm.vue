@@ -18,7 +18,7 @@
     </form>
 
     <!-- Result -->
-    <ModalResult v-if="showModal" v-bind:result="serverResponse" v-on:close = "toggleModal"/>
+    <ModalResult v-if="showModal" v-bind:shortenResult="serverResponse" v-on:close = "toggleModal"/>
 
 </template>
 
