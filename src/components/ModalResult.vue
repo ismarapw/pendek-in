@@ -62,11 +62,15 @@ export default {
     },
 
     copyToClipboard(data){
-      navigator.clipboard.writeText(data);
-      this.isCopied = true;
-      setInterval(() => {
+      navigator.clipboard.writeText(data).then(() => {
+        this.isCopied = true;
+        setInterval(() => {
           this.isCopied = false;
-      }, 5000);
+        }, 5000);
+      })
+      .catch(() => {
+        alert("something went wrong");
+      });
     }
   }
 
@@ -162,7 +166,6 @@ export default {
       padding: 10px;
       border-radius: 10px;
       color: white;
-      /* width: 100px; */
       background-color: #3d3d3d;
     }
 

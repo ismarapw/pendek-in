@@ -87,10 +87,16 @@ export default {
 
         .form-group {
             width: 70%;
+            position: relative;
+            left: -10px;
         }
 
         input {
             padding: 10px 10px;
+        }
+
+        .button-submit {
+            width: 108% !important;
         }
     }
 

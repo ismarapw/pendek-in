@@ -61,7 +61,7 @@ export default {
 
     @media only screen and (max-width: 768px) {
         .tagline p {
-            font-size: 26px;
+            font-size: 24px;
         }
 
         .sub-tagline p{
