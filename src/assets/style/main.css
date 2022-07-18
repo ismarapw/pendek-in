@@ -65,6 +65,18 @@ body {
     color: #ff1f2b;
 }
 
+.button-white:hover {
+    background: rgb(236, 236, 236);
+}
+
+.button-orange:hover {
+    background:linear-gradient(180deg, #FF3D00 4.97%, #F1BF0F 147.08%) ;
+}
+
+.button-submit:hover {
+    background: linear-gradient(270deg, #4A20F2 0%, #9B50FB 154.01%);
+}
+
 i {
     position: relative;
     top: 2px;

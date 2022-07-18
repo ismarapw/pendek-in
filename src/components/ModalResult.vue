@@ -4,8 +4,8 @@
       <header>
         <div class="header-content flex flex-justify-between">
           <h3 class="header-text">Pesan Tautan</h3>
-          <div class="bg-close-modal flex-align-self-center">
-            <i class="ri-close-line" v-on:click = "closeModal"></i>
+          <div class="bg-close-modal flex-align-self-center" v-on:click = "closeModal">
+            <i class="ri-close-line"></i>
           </div>
         </div>
         <hr class="header-line">
@@ -34,6 +34,10 @@
           <button class="button button-copy-secondary" style="margin-left: 20px" v-on:click = "copyToClipboard(QrResult)"><i class="ri-file-copy-line"></i>Copy</button>
         </div>
       </section>
+
+      <div class="copy-msg" v-if="isCopied">
+        <span>Di Copy ke clipboard</span>        
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +50,12 @@ export default {
     console.log(this.QrResult);
   },
 
+  data (){
+    return {
+      isCopied : false
+    }
+  },
+
   methods : {
     closeModal(){
       this.$emit('close')
@@ -53,6 +63,10 @@ export default {
 
     copyToClipboard(data){
       navigator.clipboard.writeText(data);
+      this.isCopied = true;
+      setInterval(() => {
+          this.isCopied = false;
+      }, 5000);
     }
   }
 
@@ -115,6 +129,10 @@ export default {
       color: white;
     }
 
+    .button-copy:hover,.button-download:hover {
+      background: linear-gradient(270deg, #4A20F2 0%, #9B50FB 154.01%);
+    }
+
     .error-result {
       text-align: center;
     }
@@ -130,6 +148,22 @@ export default {
     .button-copy-secondary{
       background-color: #dfdfdf;
       color: #1A1A1A;
+    }
+
+    .button-copy-secondary:hover{
+      background-color: #cacaca;
+    }
+
+    .copy-msg {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      /* width: 100px; */
+      background-color: #3d3d3d;
     }
 
 </style>

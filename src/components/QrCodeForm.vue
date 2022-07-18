@@ -8,7 +8,16 @@
             </div>
         </div>
         <div class="form-group">
-            <button class="button button-submit" v-on:click = "validateInput"><i class="ri-send-plane-fill"></i> Buat QR</button>
+            <button class="button button-submit" v-on:click = "validateInput" v-bind:disabled="isWaiting">
+                <div v-if="!isWaiting">
+                    <i class="ri-send-plane-fill"></i> 
+                    Buat QR
+                </div>
+                <div v-else class="flex flex-justify-center">
+                    <img src="../assets/images/loading.svg" alt="" class="loading">
+                    <span style="margin-left:5px">Bentar yaa</span>
+                </div>
+            </button>
         </div>
     </form>
 
@@ -29,7 +38,8 @@ export default {
             QrURL : null,
             inputUrl :'',
             invalidInput : false,
-            showModal : false
+            showModal : false,
+            isWaiting : false
         }
     },
 
@@ -38,6 +48,7 @@ export default {
             this.invalidInput = this.inputUrl == "" ?  true : false ;
             if(this.invalidInput == false){
                 this.getQR(this.inputUrl);
+                this.isWaiting = true;
             }
         },
 
@@ -57,6 +68,9 @@ export default {
                     // update nilai QrURL dan tampilkan modal
                     this.QrURL = urlBlob;
                     this.showModal = true;
+
+                    // berhentikan loading
+                    this.isWaiting = false;
                 }
 
             } catch (error) {

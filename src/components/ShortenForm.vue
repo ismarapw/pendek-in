@@ -13,7 +13,16 @@
             <input type="text" placeholder="Custom alias (opsional)" v-model="inputCustom">
         </div>
         <div class="form-group">
-            <button class="button button-submit" v-on:click="validateInput"><i class="ri-send-plane-fill"></i> Pendekin</button>
+            <button class="button button-submit" v-on:click="validateInput" v-bind:disabled="isWaiting">
+                <div v-if="!isWaiting">
+                    <i class="ri-send-plane-fill"></i> 
+                    Pendekin
+                </div>
+                <div v-else class="flex flex-justify-center">
+                    <img src="../assets/images/loading.svg" alt="" class="loading">
+                    <span style="margin-left:5px">Bentar yaa</span>
+                </div>
+            </button>
         </div>
     </form>
 
@@ -36,7 +45,8 @@ export default {
             inputCustom : '',
             invalidInput : false,
             serverResponse : null,
-            showModal : false
+            showModal : false,
+            isWaiting : false
         }
     },
 
@@ -45,6 +55,7 @@ export default {
             this.invalidInput = this.inputUrl == "" ?  true : false ;
             if(this.invalidInput == false){
                 this.getShortLink(this.inputUrl, this.inputCustom);
+                this.isWaiting = true;
             }
         },
 
@@ -72,6 +83,9 @@ export default {
                 // tampilkan modal
                 this.showModal = true;
 
+                // berhentikan loading
+                this.isWaiting = false;
+
             } catch (error) {
                 console.log(error);
             }
@@ -85,6 +99,13 @@ export default {
 </script>
 
 <style>
+    .loading {
+        width: 25px;
+        height: 25px;
+    }
 
+    .button-submit{
+        height: 45px !important;
+    }
 
 </style>
