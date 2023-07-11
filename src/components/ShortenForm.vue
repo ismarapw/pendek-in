@@ -67,7 +67,7 @@ export default {
                 const requestBody = {
                     url : url,
                     alias : alias,
-                    domain : "tiny.one",
+                    domain : "tinyurl.com",
                 };
 
                 // Request ke API 
