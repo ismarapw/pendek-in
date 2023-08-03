@@ -1,7 +1,7 @@
 # Pendek In
 Welcome to the Vue.js Pendek In (Shorten Link) Website repository! 🚀
 
-This project is a personal initiative aimed at enhancing my skills in Vue.js, a progressive JavaScript framework for building user interfaces. The core idea of this web application is to provide a simple and efficient tool for shortening long URLs into more manageable, shareable links.
+This project is a personal initiative aimed at enhancing my skills in Vue.js, a progressive JavaScript framework for building user interfaces. The core idea of this web application is to provide a simple and efficient tool for shortening long URLs into more manageable, shareable links. The short link use tiny.url API.
 
 # Key Features
 1. URL Shortening: Users can enter a long URL, and the application will generate a shorter, custom link that redirects to the original address.
